@@ -1,19 +1,4 @@
-plugins {
-    id 'java'
-}
-
-group 'com.ably'
-version '0.0.1-SNAPSHOT'
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    api('org.springframework.boot:spring-boot-starter-data-jpa')
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
     testImplementation 'com.h2database:h2'
-}
-
-test {
-    useJUnitPlatform()
 }
