@@ -1,0 +1,17 @@
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  profiles:
+    include: database
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  jpa:
+    open-in-view: false
+
+jwt:
+  secret-key: +soBgzmSky3tCuPeSVB5dmT5OVrqI1zMn8rXwwVCjIyRBHx7FhKtWeThKIONv+8bcdKiZaZPJv1DlGMsSJTajvzoeG0T9FIVa3LS71Jk3yL+t1jti4I+pn7Uj7sDuQHGd6Cg3QNuTe7YJPLyJox1aAXqhsRXvJaL2u//mV88FKk1gQMrLOFpuyJzUhjrYT0x/SFReRerYSDdbjVuYkmqojY/q7oLRFniFv3GUjD//SRDvT16oFMYsBbaN8WoRNSbA+2N3m04bjI4385o2Cz4hCh0PyYJE6bz0pMvxIJnyOhmzaVfLq8td503rZwYhjBaoa4cQuWwa7dTXkFSRH19xg==
+  expire-ms: 86400000 # 1일
+
+otp:
+  ttl-min: 2

@@ -1,0 +1,5 @@
+rootProject.name = 'auth'
+include 'auth-api'
+include 'auth-database'
+include 'otp-client'
+
