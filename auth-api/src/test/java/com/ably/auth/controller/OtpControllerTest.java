@@ -39,8 +39,8 @@ public class OtpControllerTest {
     private JwtEntryPoint jwtEntryPoint;
 
     @Test
-    @DisplayName("OTP 문자전송 테스트")
-    void sendOtpSmsPostTest() throws Exception {
+    @DisplayName("OTP 문자전송 테스트, 200 성공")
+    void sendOtpSms200Test() throws Exception {
         when(otpService.sendOtpSms(any()))
                 .thenReturn("123232");
         mockMvc.perform(post("/api/otp/sms")
@@ -50,8 +50,19 @@ public class OtpControllerTest {
     }
 
     @Test
-    @DisplayName("OTP 컨펌 테스트")
-    void confirmPostTest() throws Exception {
+    @DisplayName("OTP 문자전송 테스트, 전화번호 필드누락 400 실패")
+    void sendOtpSms400Test() throws Exception {
+        when(otpService.sendOtpSms(any()))
+                .thenReturn("123232");
+        mockMvc.perform(post("/api/otp/sms")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"phone\":\"\"}"))
+                .andExpect(status().is(400));
+    }
+
+    @Test
+    @DisplayName("OTP 컨펌 테스트, 200 성공")
+    void confirmOtp200Test() throws Exception {
         String otpCode = "123232";
         when(otpService.sendOtpSms(any()))
                 .thenReturn(otpCode);
@@ -59,5 +70,17 @@ public class OtpControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"phone\":\"01092923232\",\"otp_number\":\"" + otpCode + "\"}"))
                 .andExpect(status().is(200));
+    }
+
+    @Test
+    @DisplayName("OTP 컨펌 테스트, 전화번호 필드누락 400 실패")
+    void confirmOtp400Test() throws Exception {
+        String otpCode = "123232";
+        when(otpService.sendOtpSms(any()))
+                .thenReturn(otpCode);
+        mockMvc.perform(post("/api/otp/sms")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"phone\":\"\",\"otp_number\":\"" + otpCode + "\"}"))
+                .andExpect(status().is(400));
     }
 }

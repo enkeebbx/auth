@@ -30,7 +30,7 @@ public class OtpController {
 
     @ApiOperation(value = "OTP SMS ACK")
     @PostMapping("/confirm")
-    public void confirmOtp(@RequestBody OtpConfirmRequest otpConfirmRequest) {
+    public void confirmOtp(@Valid @RequestBody OtpConfirmRequest otpConfirmRequest) {
         otpService.confirmOtp(
                 otpConfirmRequest.getPhone(),
                 otpConfirmRequest.getOtpNumber()
